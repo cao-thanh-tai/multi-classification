@@ -1,0 +1,23 @@
+﻿# Data va ket qua chay (nang, khong commit)
+data/raw/
+data/processed/
+data/external/
+experiments/
+
+# Giu lai splits va reports
+!data/splits/
+!reports/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Secrets
+.env
