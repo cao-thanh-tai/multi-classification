@@ -1,0 +1,4 @@
+name: resnet50
+num_classes: 20
+pretrained: true
+weights: ResNet50_Weights.IMAGENET1K_V2

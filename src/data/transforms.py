@@ -1,33 +1,32 @@
-"""Transform dùng chung cho dataset PASCAL VOC."""
+"""Xây dựng các phép biến đổi ảnh (transforms) cho tập huấn luyện và đánh giá."""
 
 from __future__ import annotations
 
-from typing import Callable
+from typing import Sequence
 
 from torchvision import transforms
 
 
 def build_transforms(
-    image_size: int,
-    train: bool,
-    mean: tuple[float, float, float],
-    std: tuple[float, float, float],
-) -> Callable:
-    """Tạo transform train hoặc deterministic transform cho val/test."""
-    if image_size <= 0:
-        raise ValueError("image_size phải lớn hơn 0")
-    operations: list[Callable] = [transforms.Resize((image_size, image_size))]
-    if train:
-        operations.extend(
+    image_size: int = 224,
+    is_train: bool = True,
+    mean: Sequence[float] = (0.485, 0.456, 0.406),
+    std: Sequence[float] = (0.229, 0.224, 0.225),
+) -> transforms.Compose:
+    """Tạo chuỗi biến đổi ảnh cho train hoặc val/test."""
+    if is_train:
+        return transforms.Compose(
             [
-                transforms.RandomHorizontalFlip(),
-                transforms.ColorJitter(
-                    brightness=0.2,
-                    contrast=0.2,
-                    saturation=0.2,
-                    hue=0.05,
-                ),
+                transforms.Resize((image_size, image_size)),
+                transforms.RandomHorizontalFlip(p=0.5),
+                transforms.ToTensor(),
+                transforms.Normalize(mean=mean, std=std),
             ]
         )
-    operations.extend([transforms.ToTensor(), transforms.Normalize(mean, std)])
-    return transforms.Compose(operations)
+    return transforms.Compose(
+        [
+            transforms.Resize((image_size, image_size)),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=mean, std=std),
+        ]
+    )

@@ -1,4 +1,7 @@
-data_root: data/raw
+data_roots:
+  train: data/raw/VOCtrainval_06-Nov-2007/VOCdevkit/VOC2007
+  val: data/raw/VOCtrainval_06-Nov-2007/VOCdevkit/VOC2007
+  test: data/raw/VOCtest_06-Nov-2007/VOCdevkit/VOC2007
 splits_root: data/splits/v1
 classes_path: data/processed/classes.json
 image_size: 224

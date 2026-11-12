@@ -1,4 +1,4 @@
-﻿# {{PROJECT_NAME}}
+# {{PROJECT_NAME}}
 
 > File ngữ cảnh của project. AI đọc đầu mỗi phiên và cập nhật khi xong một mốc.
 > Quy tắc: file này chỉ chứa trạng thái HIỆN TẠI. Số liệu chi tiết nằm ở `reports/`, không chép tay vào đây.
@@ -161,15 +161,16 @@
 - [x] EDA (đã chạy bằng dataset trong conda env `cv`)
 - [x] Chốt split (`data/splits/v1/`, dùng split chính thức VOC2007)
 - [x] Dataset multi-label (đã kiểm tra bằng pytest và dữ liệu VOC thật)
-- [ ] Pipeline chạy thông suốt với một model (baseline)
-- [ ] Thêm các model còn lại
+- [x] Pipeline chạy thông suốt với một model (baseline: resnet50 đã test chạy thông suốt)
+- [ ] Thêm các model còn lại (vit_b16, convnext_t)
 - [ ] Chạy đủ 3 seed cho mỗi model
 - [ ] Chạy `compare.py`, chốt bảng so sánh trong `reports/`
 - [ ] Đánh giá trên test split (chỉ để báo cáo cuối)
 
 ## Việc tiếp theo
-- Điền recipe train và cấu hình model baseline.
-- Nối dataset vào pipeline training, sau đó chạy smoke test khi được cho phép.
+- Triển khai các model tiếp theo theo cấu trúc (`src/models/vit_b16/`, `src/models/convnext_t/`).
+- Viết `src/comparison/` và `scripts/compare.py` để sẵn sàng tổng hợp kết quả metrics.
+- Chạy train đầy đủ 3 seed cho từng model (người dùng tự chạy hoặc cho phép chạy).
 
 ## Quyết định đã chốt
 > Chỉ ghi quyết định kèm ngày và lý do (vì sao chọn A, không chọn B). Sự kiện như "đã train xong" thì đi vào Trạng thái, không ghi ở đây.

@@ -1,0 +1,22 @@
+seed: 42
+seeds:
+  - 42
+  - 43
+  - 44
+
+training:
+  epochs: 20
+  batch_size: 32
+  num_workers: 2
+  learning_rate: 0.0001
+  weight_decay: 0.01
+  optimizer: adamw
+  scheduler: cosine
+  min_lr: 0.000001
+  warmup_epochs: 2
+  threshold: 0.5
+  loss: bce_with_logits
+  save_best_metric: macro_f1
+
+output:
+  experiments_dir: experiments
