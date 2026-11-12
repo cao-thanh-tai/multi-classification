@@ -157,10 +157,10 @@
 
 ## Trạng thái
 > Thêm mục khi cần. Mốc đã xong lâu thì gộp lại thành một dòng để file không dài ra.
-- [ ] Điền Bài toán và Dữ liệu
-- [ ] EDA (đã chạy bằng dataset trong conda env `cv`; chưa chốt kết luận)
-- [ ] Chốt split (`data/splits/v1/`, code sao chép split chính thức đã viết, chưa chạy)
-- [ ] Dataset multi-label (đã viết code và test, chưa chạy được pytest vì môi trường thiếu pytest)
+- [x] Điền Bài toán và Dữ liệu
+- [x] EDA (đã chạy bằng dataset trong conda env `cv`)
+- [x] Chốt split (`data/splits/v1/`, dùng split chính thức VOC2007)
+- [x] Dataset multi-label (đã kiểm tra bằng pytest và dữ liệu VOC thật)
 - [ ] Pipeline chạy thông suốt với một model (baseline)
 - [ ] Thêm các model còn lại
 - [ ] Chạy đủ 3 seed cho mỗi model
@@ -168,9 +168,8 @@
 - [ ] Đánh giá trên test split (chỉ để báo cáo cuối)
 
 ## Việc tiếp theo
-- Rà soát biểu đồ và chốt kết luận EDA trong `notebooks/01_eda.ipynb`.
-- Chạy cell lưu split để tạo `data/splits/v1/train.txt`, `val.txt`, `test.txt`.
-- Tạo `classes.json` và split bằng notebook, sau đó kiểm tra dataset bằng pytest.
+- Điền recipe train và cấu hình model baseline.
+- Nối dataset vào pipeline training, sau đó chạy smoke test khi được cho phép.
 
 ## Quyết định đã chốt
 > Chỉ ghi quyết định kèm ngày và lý do (vì sao chọn A, không chọn B). Sự kiện như "đã train xong" thì đi vào Trạng thái, không ghi ở đây.
@@ -180,7 +179,9 @@
 
 ## Kết quả tóm tắt
 - Báo cáo: `reports/comparison.md`, `reports/comparison.csv`, `reports/figures/`
-- Kết luận chính: (2-3 dòng, số chỉ lấy từ `reports/`; chưa chạy thì ghi "chưa chạy")
+- EDA đã kiểm tra 9.963 ảnh: train 2.501, val 2.510, test 4.952; mapping có 20 class.
+- Không phát hiện ảnh thiếu, kích thước không hợp lệ, ảnh không có label hoặc overlap image ID giữa các split.
+- Phân bố class mất cân bằng rõ (person 4.192 ảnh, sheep 195 ảnh); cần báo cáo macro/micro F1 và cân nhắc class weighting khi train.
 
 ## Vấn đề đang mở
 (Lỗi chưa giải quyết, câu hỏi cần người dùng quyết định.)
